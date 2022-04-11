@@ -5,7 +5,7 @@ create env create -f pyspark_env.yml
 
 ### Running the Socket server file in windows 
 ```
-python socket.server.py
+python socket_server.py
 ```
 
 ### PYspark streaming that fetch socket streams and calculates the sentiments 
