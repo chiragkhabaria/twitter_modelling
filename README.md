@@ -8,7 +8,7 @@ create env create -f pyspark_env.yml
 python socket.server.py
 ```
 
-### Running the stream file checks for the stream and loads calculates the sentiments 
+### PYspark streaming that fetch socket streams and calculates the sentiments 
 ```
 python process_stream.py
 ```
