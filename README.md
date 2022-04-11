@@ -12,3 +12,4 @@ python socket.server.py
 ```
 python process_stream.py
 ```
+### Add Architecture details 
