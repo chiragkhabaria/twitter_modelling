@@ -15,6 +15,7 @@ class pysparkStream():
     __sparkContext = None
     __sparkStreamingContext = None 
     __sparkSQLContext = None
+    __sparkSession = None 
 
     def __init__(self, appName = "twitterApp") -> None:
         self.__appName = appName
@@ -38,14 +39,17 @@ class pysparkStream():
             self.__sparkSQLContext = self.__getSparkSQLContext()
         return self.__sparkSQLContext
 
+    @property 
+    def sparkSession(self) -> SparkSession:
+        if (self.__sparkSession == None):
+            self.__sparkSession = self.__getSparkSession()
+        return self.__sparkSession
+
     def __getSparkContext (self) -> SparkContext:
         try:
             conf = SparkConf()
             conf.setAppName(self.__appName) 
-            return SparkContext(
-                conf = conf
-            )
-            return conf
+            return SparkContext.getOrCreate(conf = conf)
         except Exception as e:
             print("Error occurred while fetching the spark context. Error Details ::" + str(e))
 
@@ -61,7 +65,17 @@ class pysparkStream():
         try:
             return SQLContext(
                                 sparkContext = self.sparkContext
+                            ).getOrCreate(
+                                self.sparkContext
                             )
         except Exception as e:
             print("Error occurred while opening the SQL Context. Error Details ::" + str(e))
+        
+    def __getSparkSession(self) -> SparkSession:
+        try:
+            return SparkSession.builder.appName(
+                name = self.__appName
+            ).getOrCreate()
+        except Exception as e:
+            print('Error occurred while creating the spark session. Error Details ::' + str(e))
 

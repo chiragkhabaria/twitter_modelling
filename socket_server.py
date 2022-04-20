@@ -3,7 +3,7 @@ import socket_tweet_streamer
 import socket
 import configparser
 
-hash_tag_list = ["ukraine","russia"]
+hash_tag_list = ["ukraine","russia","war"]
 
 def openSocket(host, port, maxListener = 10):
     try:

@@ -12,4 +12,7 @@ python socket_server.py
 ```
 python process_stream.py
 ```
-### Add Architecture details 
+### Data vizulation is done through the interactive notebook 
+```
+data_viz.ipynb
+```
